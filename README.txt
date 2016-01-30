@@ -1,3 +1,7 @@
+Note: 
+  This fork allows this ST7735 Library to be used with the ESP8266 Sming framework for driving the ST7735 based displays.
+  The support is only for hardware SPI.
+
 This is a library for the Adafruit 1.8" SPI display.
 This library works with the Adafruit 1.8" TFT Breakout w/SD card
   ----> http://www.adafruit.com/products/358
