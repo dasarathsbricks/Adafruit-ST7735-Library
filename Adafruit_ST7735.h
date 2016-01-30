@@ -31,7 +31,11 @@ as well as Adafruit raw 1.8" TFT display
  #include "WProgram.h"
 #endif
 
+#if !defined(__ESP8266_EX__)
 #include <Adafruit_GFX.h>
+#else
+#include <Libraries/Adafruit_GFX/Adafruit_GFX.h>
+#endif
 
 #if defined(__SAM3X8E__)
   #include <include/pio.h>
@@ -164,7 +168,7 @@ class Adafruit_ST7735 : public Adafruit_GFX {
 
   boolean  hwSPI;
 
-#if defined(__AVR__) || defined(CORE_TEENSY)
+#if defined(__AVR__) || defined(CORE_TEENSY)||defined(__ESP8266_EX__)
   volatile uint8_t *dataport, *clkport, *csport, *rsport;
   uint8_t  _cs, _rs, _rst, _sid, _sclk,
            datapinmask, clkpinmask, cspinmask, rspinmask,

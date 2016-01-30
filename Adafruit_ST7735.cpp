@@ -68,6 +68,7 @@ Adafruit_ST7735::Adafruit_ST7735(int8_t cs, int8_t rs, int8_t rst)
 #define __AVR__
 #endif
 
+
 inline void Adafruit_ST7735::spiwrite(uint8_t c) {
 
   //Serial.println(c, HEX);
@@ -85,6 +86,8 @@ inline void Adafruit_ST7735::spiwrite(uint8_t c) {
 #elif defined (__arm__)
       SPI.setClockDivider(21); //4MHz
       SPI.setDataMode(SPI_MODE0);
+      SPI.transfer(c);
+#elif defined(__ESP8266_EX__)
       SPI.transfer(c);
 #endif
   } else {
@@ -332,6 +335,8 @@ void Adafruit_ST7735::commonInit(const uint8_t *cmdList) {
     SPI.begin();
     SPI.setClockDivider(21); //4MHz
     SPI.setDataMode(SPI_MODE0);
+#elif defined(__ESP8266_EX__)
+    SPI.begin();
 #endif
   } else {
     pinMode(_sclk, OUTPUT);
